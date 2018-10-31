@@ -1,0 +1,11 @@
+catalog.in:
+  name: !php/const ZealByte\Catalog\ZealByteCatalog::ROUTE_INVENTORY
+  path: /{category}/{alias}
+  controller: ZealByte\Bundle\CatalogBundle\Controller\CatalogController::indexAction
+  context: catalog
+
+catalog.rel.in:
+  name: !php/const ZealByte\Catalog\ZealByteCatalog::ROUTE_RELATED_INVENTORY
+  path: /{category}/{alias}/{identifier}/{related_alias}
+  controller: ZealByte\Bundle\CatalogBundle\Controller\CataologController::relatedAction
+  context: catalog

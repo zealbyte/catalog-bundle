@@ -1,0 +1,5 @@
+catalog.in.lbl:
+  name: !php/const ZealByte\Catalog\ZealByteCatalog::ROUTE_INVENTORY_LABELS
+  path: /{category}/{alias}
+  controller: ZealByte\Bundle\CatalogBundle\Controller\CatalogController::autofillAction
+  context: list

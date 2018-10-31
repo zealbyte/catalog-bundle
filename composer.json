@@ -1,0 +1,35 @@
+{
+	"name": "zealbyte/catalog-bundle",
+	"description": "ZealByte Catalog Symfony Bundle",
+	"keywords": [],
+	"homepage": "https://zealbyte.com/",
+	"license": "MIT",
+	"type": "symfony-bundle",
+	"authors": [
+		{
+			"name": "Dustin Martella",
+			"email": "dustin.martella@zealbyte.com"
+		}
+	],
+	"require": {
+		"php": ">=7.1.3",
+		"symfony/framework-bundle": "~4.0",
+		"symfony/config": "~4.0",
+		"symfony/dependency-injection": "~4.0",
+		"symfony/http-foundation": "~4.0",
+		"symfony/http-kernel": "~4.0",
+		"zealbyte/catalog": "~1.0"
+	},
+	"suggest": {
+		"symfony/form": "To generate forms for filtering and catalog data entry",
+		"symfony/translation": "To localize catalog labels and data",
+		"twig/twig": "To build templates to display catalogs and catalog data"
+	},
+	"autoload": {
+		"psr-4": {
+			"ZealByte\\Bundle\\CatalogBundle\\": "lib"
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
+}

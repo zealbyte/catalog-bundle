@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://symfony.com/schema/dic/services
+	http://symfony.com/schema/dic/services/services-1.0.xsd">
+	<parameters>
+		<parameter key="catalog.datatable_processor.route_name">catalog.view</parameter>
+		<parameter key="catalog.datatable_processor.route_identifier_param">identifier</parameter>
+	</parameters>
+
+	<services>
+		<defaults public="false" />
+
+		<service id="ZealByte\Catalog\Inventory\CatalogIndex">
+		</service>
+		<service id="catalog.index" alias="ZealByte\Catalog\Inventory\CatalogIndex" public="true" />
+
+		<service id="ZealByte\Catalog\Inventory\SpecRegistry">
+			<argument type="service" id="catalog.index" />
+		</service>
+		<service id="catalog.registry" alias="ZealByte\Catalog\Inventory\SpecRegistry" public="true" />
+
+		<service id="ZealByte\Catalog\Inventory\CatalogFactory">
+			<argument type="service" id="catalog.index" />
+			<argument type="service" id="event_dispatcher" />
+		</service>
+		<service id="catalog.factory" alias="ZealByte\Catalog\Inventory\CatalogFactory" public="true" />
+
+		<!-- Catalog Menu -->
+		<service id="ZealByte\Bundle\CatalogBundle\Menu\CatalogMenuBuilder" public="false">
+			<argument type="service" id="translator" on-invalid="ignore" />
+			<tag name="menu.builder" menu="catalog" />
+		</service>
+
+		<!-- Event Subscribers -->
+		<service id="ZealByte\Catalog\EventListener\CatalogRequestSpecSubscriber" public="false">
+			<argument type="service" id="catalog.registry" />
+			<argument type="service" id="request_stack" />
+			<tag name="kernel.event_subscriber" />
+		</service>
+
+		<!-- Column Types -->
+		<service id="ZealByte\Catalog\Column\Type\CurrencyColumnType" public="false">
+			<argument>%(#5n</argument>
+			<tag name="catalog.column_type" />
+		</service>
+
+	</services>
+</container>

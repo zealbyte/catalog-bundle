@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://symfony.com/schema/dic/services
+	http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+	<services>
+		<defaults public="false" />
+
+		<!-- Form Extension
+		<service id="ZealByte\Catalog\Form\Extension\Catalog\CatalogExtension">
+			<argument type="service" id="catalog.factory" />
+			<argument type="service" id="catalog.registry" />
+		</service>
+
+		<service id="ZealByte\Catalog\Form\Extension\DataTable\DataTableExtension">
+			<argument type="service" id="catalog.factory" />
+			<argument type="service" id="catalog.registry" />
+			<argument type="service" id="translator" />
+		</service>
+		-->
+
+		<!-- Catalog Item Form Type -->
+		<service id="ZealByte\Catalog\Form\Extension\Catalog\Type\CatalogItemFormType">
+			<argument type="service" id="catalog.factory" />
+			<argument type="service" id="catalog.registry" />
+			<tag name="form.type" />
+		</service>
+
+		<!-- Datum Form Type
+		<service id="ZealByte\Catalog\Form\Extension\Catalog\Type\DatumFormType">
+			<argument type="service" id="catalog.factory" />
+			<argument type="service" id="catalog.registry" />
+			<tag name="form.type" />
+		</service> -->
+
+		<!-- DataTable Form Type -->
+		<service id="ZealByte\Catalog\Form\Extension\DataTable\Type\DataTableType">
+			<argument type="service" id="catalog.factory" />
+			<argument type="service" id="catalog.registry" />
+			<tag name="form.type" />
+		</service>
+
+		<!-- DataTableColumn Form Type -->
+		<service id="ZealByte\Catalog\Form\Extension\DataTable\Type\DataTableColumnType">
+			<argument type="service" id="catalog.factory" />
+			<argument type="service" id="catalog.registry" />
+			<tag name="form.type" />
+		</service>
+
+		<!-- DataTableColumnCollection Form Type -->
+		<service id="ZealByte\Catalog\Form\Extension\DataTable\Type\DataTableColumnCollectionType">
+			<argument type="service" id="catalog.factory" />
+			<argument type="service" id="catalog.registry" />
+			<call method="setTranslator">
+				<argument type="service" id="translator" />
+			</call>
+			<tag name="form.type" />
+		</service>
+
+		<!-- DataTableFilter Form Type -->
+		<service id="ZealByte\Catalog\Form\Extension\DataTable\Type\DataTableFilterType">
+			<tag name="form.type" />
+		</service>
+
+		<!-- DataTableOrder Form Type -->
+		<service id="ZealByte\Catalog\Form\Extension\DataTable\Type\DataTableOrderType">
+			<tag name="form.type" />
+		</service>
+
+		<!-- DataTableOrder Form Type -->
+		<service id="ZealByte\Catalog\Form\Extension\DataTable\Type\DataTableSearchType">
+			<tag name="form.type" />
+		</service>
+
+		<!-- Event Subscribers -->
+		<service id="ZealByte\Catalog\Form\Extension\DataTable\EventListener\DataTableFormSubscriber" public="false">
+			<argument type="service" id="catalog.factory" />
+			<argument type="service" id="form.factory" />
+			<argument type="service" id="catalog.registry" />
+			<argument type="service" id="request_stack" />
+			<argument type="service" id="router" />
+			<tag name="kernel.event_subscriber" />
+		</service>
+
+		<service id="ZealByte\Catalog\Form\Extension\DataTable\EventListener\DataTableRowDataSubscriber" public="false">
+			<argument type="service" id="catalog.factory" />
+			<argument type="service" id="catalog.index" />
+			<tag name="kernel.event_subscriber" />
+		</service>
+
+		<service id="ZealByte\Catalog\Form\Extension\DataTable\EventListener\DataTableRowActionSubscriber" public="false">
+			<argument type="service" id="router" />
+			<tag name="kernel.event_subscriber" />
+		</service>
+
+	</services>
+</container>
